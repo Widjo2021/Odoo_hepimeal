@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="hr_employee_ptkp" model="ir.ui.view">
+        <field name="name">ptkp_extended.pph.ptkp.form.branch</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <group name="identification_group" position="after">
+                <group string='PPH 21 Settings'>
+                    <field name="ptkp_id" string="PTKP"/>
+                    <field name="tunjangan_jabatan" options="{'widget': 'monetary'}"/>
+                </group>
+            </group>
+        </field>
+    </record>
+    <record id="hr_contract_ptkp" model="ir.ui.view">
+        <field name="name">ptkp_extended.hr.contract.form.branch</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <group name="duration_group" position="after">
+                <group string='PPH 21 Settings'>
+                    <field name="tunjangan_jabatan" options="{'widget': 'monetary'}" invisible="1"/>
+                </group>
+            </group>
+        </field>
+    </record>
+</odoo>

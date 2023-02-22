@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<templates xml:space="preserve">
+    <t t-name="Menu.link">
+    	<t t-set="depth" t-value="(depth || 0) + 1"/>
+
+        <t t-if="!menu.children.length">
+            <t t-set="_link">
+                <a role="menuitem" t-attf-href="#menu_id=#{menu.id}&amp;action=#{menu.action ? menu.action.split(',')[1] : ''}"
+                    t-att-data-menu="menu.id"
+                    t-att-data-action-model="menu.action ? menu.action.split(',')[0] : ''"
+                    t-att-data-action-id="menu.action ? menu.action.split(',')[1] : ''"
+                    t-att-data-menu-xmlid="menu.xmlid"
+                    t-attf-class="#{inNavbar ? '' : 'dropdown-item '}o_menu_entry_lvl_#{depth}"
+                    data-toggle="collapse" data-target="#o_navbar_collapse.in">
+                    <span class="name_of_class"><t t-esc="menu.name"/></span>
+
+                    
+                    <t t-if='first_level'>
+                        <t t-if="menu.menu_icon_type=='image'">
+                            <t t-if="menu.menu_icon_image">
+                                <div class='falcon-icon-img-div'>
+                                    <image class='falcon-icon-img' t-att-src="'/web/image?model=ir.ui.menu&amp;field=menu_icon_image&amp;id='+menu.id"/>
+                                </div>
+                            </t>
+                            <t t-else="">
+                                <i class="fa fa-circle-o"/>
+                            </t>
+                        </t>
+                        <t t-elif="menu.menu_icon_type=='icon'">
+                            <t t-if="menu.menu_icon_class">
+                                <i t-att-class="menu.menu_icon_class"/>
+                            </t>
+                            <t t-else="">
+                                <i class="fa fa-circle-o"/>
+                            </t>
+                        </t>
+                        <t t-else="">
+                            <i class="fa fa-circle-o"/>
+                        </t>
+                    </t>
+                   
+            
+                </a>
+            </t>
+            <li t-if="inNavbar">
+                <t t-raw="_link"/>
+            </li>
+            <t t-else="">
+                <t t-raw="_link"/>
+            </t>
+        </t>
+        <t t-else="">
+            <ul>
+                <li>
+                    <a href="#" t-attf-class="dropdown-toggle o-no-caret o_menu_header_lvl_#{depth} mega_dropdown_menu"  data-toggle="dropdown" role="button" aria-expanded="false">               
+                        <span class='third_level'>
+                            <t t-esc="menu.name"/>
+                            <t t-if='third_level'>
+                                <span class="sb-m"></span>
+                            </t>
+                        </span>
+                    </a>
+                    <div class="dropdown-menu" role="menu">
+                        <t t-foreach="menu.children" t-as="menu">
+                            
+                            <t t-call="Menu.link"/>
+                        </t>
+                    </div>
+                </li>
+            </ul>
+        </t>
+    </t>
+    <t t-name="Menu.sections">
+    	<t t-foreach="menu_data.children" t-as="first_level_menu">
+            <section t-att-class="first_level_menu.id">
+                <t t-foreach="first_level_menu.children" t-as="second_level_menu">
+                    <t t-if="!second_level_menu.children.length">
+                        <t t-call="Menu.link">
+                            <t t-set="inNavbar" t-value="true"/>
+                            <t t-set="menu" t-value="second_level_menu"/>
+                            <t t-set="first_level" t-value="1"/>
+                        </t>
+                    </t>
+                    <t t-else="">
+                        <li>
+                            <a href="#" class="dropdown-toggle o-no-caret o_menu_header_lvl_1" t-att-data-menu-xmlid="second_level_menu.xmlid" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <span class="name_of_class"><t t-esc="second_level_menu.name"/></span>
+                                <t t-if="second_level_menu.menu_icon_type=='image'">
+                                    <t t-if="second_level_menu.menu_icon_image">
+                                        <div class='falcon-icon-img-div'>
+                                            <image class='falcon-icon-img' t-att-src="'/web/image?model=ir.ui.menu&amp;field=menu_icon_image&amp;id='+second_level_menu.id"/>
+                                        </div>
+                                    </t>
+                                    <t t-else="">
+                                        <i class="fa fa-circle-o"/>
+                                    </t>
+                                </t>
+                                <t t-elif="second_level_menu.menu_icon_type=='icon'">
+                                    <t t-if="second_level_menu.menu_icon_class">
+                                        <i t-att-class="second_level_menu.menu_icon_class"/>
+                                    </t>
+                                    <t t-else="">
+                                        <i class="fa fa-circle-o"/>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <i class="fa fa-circle-o"/>
+                                </t>
+                                <span class="sb-m"></span>
+                            </a>
+                            <div class="dropdown-menu" role="menu">
+                                <t t-foreach="second_level_menu.children" t-as="third_level_menu">
+                                    <t t-call="Menu.link">
+                                        <t t-set="depth" t-value="1"/>
+                                        <t t-set="menu" t-value="third_level_menu"/>
+                                        <t t-set="third_level" t-value="1"/>
+                                    </t>
+                                </t>
+                            </div>
+                        </li>
+                    </t>
+                </t>
+            </section>
+        </t>
+    </t>
+    <t t-name="AppsMenu">
+            <t t-set="i" t-value="0"/>
+            <t t-set='test' t-value='1'/>
+            <t t-foreach="widget.getApps()" t-as="app">
+                <t t-if="i &lt; 6">
+                   <li class="demo">
+                       <a role="menuitem"
+                            class="dropdown-item o_app"
+                            t-att-data-menu-id="app.menuID"
+                            t-att-data-menu-xmlid="app.xmlID"
+                            t-att-data-action-id="app.actionID">
+                                <t t-esc="app.name"/>
+                        </a>
+                    </li>
+                </t>
+                <t t-else="">
+                    <li class='more_desk_toggle' t-if='test==1'>
+                        <t t-set='test' t-value='0'/>
+                        <a class='more_disp' id='hideMe'>More<b class="caret"></b></a>
+                    </li>
+                    <li class="tag-less-more o_hidden">
+                        <a role="menuitem"
+                            class="dropdown-item o_app"
+                            t-att-data-menu-id="app.menuID"
+                            t-att-data-menu-xmlid="app.xmlID"
+                            t-att-data-action-id="app.actionID">
+                                <t t-esc="app.name"/>
+                        </a>
+                    </li>
+                </t>
+                <t t-set="i" t-value="i+1"/>
+            </t>
+        <li class="dropdown" id='default_menu_data' style='display:none'>
+            <a class="full" data-toggle="dropdown" href="#">
+                <i class="fa fa-th-large"/>
+            </a>
+            <div class="dropdown-menu" role="menu">
+                <t t-foreach="widget.getApps()" t-as="app">
+                <a role="menuitem"
+                    class="dropdown-item o_app"
+                    t-att-data-menu-id="app.menuID"
+                    t-att-data-menu-xmlid="app.xmlID"
+                    t-att-data-action-id="app.actionID">
+                        <t t-esc="app.name"/>
+                    </a>
+                </t>
+            </div>
+        </li>
+    </t>
+    <header t-name="Menu">
+      <nav class="o_main_navbar navbar navbar-inverse">
+                <div class="o_theme_logo"/>
+              <!-- <ul class="o_menu_apps"/> -->
+              <span class='display_fa'><i class="fa fa-bars"/></span>
+              <ul class="o_menu_systray o_hidden" role="menu"/>
+      </nav>
+    </header>
+</templates>

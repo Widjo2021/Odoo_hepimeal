@@ -1,0 +1,154 @@
+body #theme_customize_modal .modal-dialog .modal-content,
+html .o_web_client > .o_main .o_action_manager,
+body .o_list_view .o_list_table tfoot,
+body .o_list_view tbody > tr:nth-of-type(2n),
+body .o_list_view thead > tr > th,
+body .o_kanban_view .o_kanban_record,
+body .o_kanban_view .o_kanban_quick_create,
+body .o_form_view .oe_button_box,
+body .o_base_settings .o_setting_container .settings > .app_settings_block h2,
+body .o_input,
+body .o_form_sheet .note-editor .note-editing-area .note-editable,
+body .o_mail_thread .o_thread_message.o_mail_not_discussion,
+body .o_mail_activity .o_thread_message.o_mail_not_discussion,
+body .o_thread_composer .o_composer,
+body .o_thread_composer .o_composer_subject,
+.oe_chatter .o_mail_chatter_attachments .o_chatter_attachment .o_border_dashed .o_attach_title {
+ 	background-color: $dark-theme;
+}
+body .o_required_modifier.o_input,
+body .o_required_modifier .o_input {
+	background-color: $dark-theme !important;
+}
+body .o_list_view tbody > tr > td {
+	border: 1px solid $dark-theme;
+}
+body.o_web_client .o_main .o_sub_menu {
+	border-right: 1px solid $dark-theme;
+}
+body .table thead th {
+	border-bottom-width: 1px;
+}
+body #theme_customize_modal .modal-dialog .panel-primary-font label span,
+body #theme_customize_modal .modal-dialog .pf-title,
+body .navbar-inverse .o_menu_apps li a,
+body .navbar-inverse .o_menu_systray li > a,
+body .o_list_view .o_list_table thead,
+body .o_list_view .o_list_table tfoot,
+body .o_control_panel .breadcrumb > li,
+body .o_control_panel .o_cp_right .o_cp_pager,
+body .o_kanban_view .o_kanban_record .o_kanban_record_top .o_kanban_record_headings,
+body .o_calendar_view .o_calendar_widget,
+body .table,
+body .o_calendar_sidebar_container .ui-datepicker td a,
+body .o_calendar_sidebar_container .ui-datepicker td span,
+body .ui-widget-content,
+body .ui-widget-header,
+body .o_kanban_view .o_kanban_group .o_kanban_header > .o_kanban_header_title,
+body .o_kanban_counter > .o_kanban_counter_side,
+body .o_kanban_view .o_kanban_group .o_kanban_header > .o_kanban_header_title .o_kanban_config i,
+body .o_kanban_view .o_kanban_group .o_kanban_header > .o_kanban_header_title .o_kanban_quick_add i,
+body .o_kanban_view .o_kanban_record .o_kanban_record_title,
+body .o_followers .o_followers_follow_button,
+body .o_form_view,
+body .o_form_view .oe_button_box .btn.oe_stat_button,
+body .o_mail_discuss .o_mail_discuss_content,
+body .o_calendar_view .o_calendar_widget .fc-month-view .fc-day-number,
+body .o_calendar_sidebar_container .o_calendar_filter,
+body .o_control_panel .breadcrumb > li > a,
+body .o_control_panel .breadcrumb > li:before,
+body .o_base_settings .o_control_panel .o_panel .o_setting_search .searchInput,
+body .o_dashboards .o_website_dashboard div.o_box,
+body .o_dashboard_sales .o_demo_message,
+body .o_pivot table,
+body .o_activity_view > table,
+body .ui-autocomplete .ui-menu-item > a,
+body .o_input,
+body .o_theme_preview_bottom,
+body .o_form_sheet .note-editor .note-editing-area .note-editablebody,
+body .oe_import .oe_import_with_file .oe_import_debug_options,
+body .oe_import .oe_import_with_file h2 {
+	color: #efefef;
+}
+body .o_followers .o_followers_follow_button:hover,
+body .o_pivot table .o_pivot_header_cell_closed:hover,
+body .o_pivot table .o_pivot_header_cell_opened:hover,
+body .o_act_window .note-editor .note-editing-area {
+	color: $dark-theme;
+}
+body .o_calendar_view .fc-view .fc-event.o_calendar_color_6,
+body .o_dashboards .o_website_dashboard div.o_box h2,
+body .o_dashboards .o_website_dashboard div.o_box h4 {
+	color: $bc-theme;
+}
+body .navbar-inverse,
+body .ui-widget-content,
+body .o_mail_discuss .o_mail_discuss_content,
+body .o_mail_thread .o_thread_date_separator .o_thread_date,
+body .o_mail_activity .o_thread_date_separator .o_thread_date,
+body .o_kanban_view.o_theme_kanban {
+	background-color: lighten($dark-theme, 10%);
+}
+body .o_calendar_view {
+	background: unset;
+}
+body.o_web_client .o_main .o_sub_menu,
+body .o_content,
+body .o_list_view tbody > tr:nth-of-type(2n+1),
+body .o_breadcrumb_full, body .o_control_panel,
+body .o_calendar_view,
+body .fc-week,
+body .o_calendar_sidebar_container,
+body .o_graph_controller .o_graph_renderer .o_graph_canvas_container canvas,
+body .o_form_view ,
+body .o_kanban_view.o_kanban_grouped,
+body .o_form_view .o_form_sheet_bg > .o_form_sheet,
+body .o_base_settings.o_form_view .o_control_panel,
+body .o_form_view .o_form_statusbar,
+body .o_base_settings .o_setting_container .settings,
+body .o_dashboards .o_website_dashboard div.o_box,
+body .o_dashboards .o_website_dashboard,
+body .o_dashboard,
+body .o_pivot table,
+body .o_pivot table th,
+body .o_pivot table .o_pivot_header_cell_opened,
+body .o_pivot table .o_pivot_header_cell_closed,
+body .o_pivot table .o_pivot_measure_row,
+body .o_activity_view > table,
+body .o_activity_view .o_activity_summary_cell {
+	background-color: lighten($dark-theme, 4%);
+}
+body .navbar-inverse .o_menu_apps .more_item li a,
+body .navbar-inverse .o_menu_apps li a.active {
+	color: fade-out($dark-theme, 0.2);
+}
+body .o_dashboards .o_website_dashboard .o_dashboard_visits .o_demo_background .o_layer {
+	background-color: fade-out($dark-theme, 0.2);
+}
+body .o_base_settings .o_control_panel .o_panel .o_setting_search .searchInput {
+	background: transparent;
+}
+body .oe_import .oe_import_with_file table {
+	background-color: fade-out($dark-theme, 0.2) !important;
+	color: #efefef;
+}
+/*default link color*/
+.o_list_view .o_list_table .text-info {
+	color: $bc-light !important;
+}
+.o_form_view .o_form_uri > span {
+	color: $bc-light;
+}
+::placeholder {
+  color: #efefef;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+ color: #efefef;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+ color: #efefef;
+}
+/*default link color end*/

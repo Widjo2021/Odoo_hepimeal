@@ -1,0 +1,9 @@
+.o_form_view .o_horizontal_separator {
+	color: $sep-clr-theme;
+	width: auto;
+    display: inline-block;
+    border-left: 2px solid $sep-clr-theme;
+    border-right: 2px solid $sep-clr-theme;
+    padding: 0 10px;
+    margin-bottom: 10px;
+}

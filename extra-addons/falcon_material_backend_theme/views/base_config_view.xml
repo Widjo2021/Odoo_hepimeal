@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   <!-- Website Config Settings -->
+    <record id="res_config_settings_view_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.mail</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="base_setup.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+             <div id="emails" position="after">
+                <h2>Login Page Settings</h2>
+                <div class="row mt16 o_settings_container">
+                    <div class="col-xs-12 col-md-12 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="is_login_background"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="is_login_background"/>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-12 col-md-12 o_setting_box" attrs="{'invisible': [('is_login_background', '=', False)]}">
+                        <div class="o_setting_right_pane">
+                            <label for="is_back_img_color"/>
+                            <div class="text-muted">
+                                <field name="is_back_img_color" widget="radio"/>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <div class="col-xs-12 col-md-12 o_setting_box" attrs="{'invisible': ['|','|',('is_login_background', '=', False),('is_back_img_color', '=',False),('is_back_img_color', '=', 'color')]}">
+                        <div class="o_setting_right_pane">
+                            <label for="login_img"/>
+                            <div class="text-muted">
+                                <field name="login_img" widget="image"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-md-12 o_setting_box" attrs="{'invisible': ['|','|',('is_login_background', '=', False),('is_back_img_color', '=',False),('is_back_img_color', '=', 'image')]}">
+                        <div class="o_setting_right_pane">
+                            <label for="login_color"/>
+                            <div class="text-muted">
+                                <field name="login_color" placeholder="like #2b4e99" widget="biz_color"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </field>
+    </record>
+    <template id='biztech_custom_login_page' inherit_id="web.login_layout" name="Login Layout Inherit"> 
+        <xpath expr="//div[hasclass('container','py-5')]" position="replace">
+            <t t-set='login_page_back_on' t-value="request.env['ir.config_parameter'].sudo().get_param('is_login_background')"/>
+            <t t-set='login_page_back_type' t-value="request.env['ir.config_parameter'].sudo().get_param('is_back_img_color')"/>
+            <t t-set='login_page_color' t-value="request.env['ir.config_parameter'].sudo().get_param('login_color')"/>
+            <t t-if='login_page_back_on'>
+                <t t-if="login_page_back_type=='image'">
+                    <div class="falcon-login" style="background-image: url(/web/binary/login_img);">
+                        <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">
+                            <div class="card-body">
+                                <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
+                                    <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
+                                    <t t-esc='login_page_prameter'/>
+                                </div>
+                                <t t-raw="0"/>
+                                <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+                                    <t t-if="not disable_database_manager">
+                                        <a class="border-right pr-2 mr-1" href="/web/database/manager">Manage Databases</a>
+                                    </t>
+                                    <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+                <t t-if="login_page_back_type=='color'">
+                    <div class="falcon-login" t-att-style="'background-color: %s;' % (login_page_color)">
+                        <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list" style="max-width: 300px;">
+                            <div class="card-body">
+                                <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
+                                    <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
+                                    <t t-esc='login_page_prameter'/>
+                                </div>
+                                <t t-raw="0"/>
+                                <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+                                    <t t-if="not disable_database_manager">
+                                        <a class="border-right pr-2 mr-1" href="/web/database/manager">Manage Databases</a>
+                                    </t>
+                                    <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </t>
+            </t>
+            <t t-else="">
+                <div class="container py-5">
+                    <div t-attf-class="card border-0 mx-auto bg-100 {{login_card_classes}} o_database_list falcon_default_login" style="max-width: 300px;">
+                        <div class="card-body">
+                            <div t-attf-class="text-center pb-3 border-bottom {{'mb-3' if form_small else 'mb-4'}}">
+                                <img t-attf-src="/web/binary/company_logo{{ '?dbname='+db if db else '' }}" alt="Logo" style="max-height:120px; max-width: 100%; width:auto"/>
+                            </div>
+                            <t t-raw="0"/>
+                            <div class="text-center small mt-4 pt-3 border-top" t-if="not disable_footer">
+                                <t t-if="not disable_database_manager">
+                                    <a class="border-right pr-2 mr-1" href="/web/database/manager">Manage Databases</a>
+                                </t>
+                                <a href="https://www.odoo.com?utm_source=db&amp;utm_medium=auth" target="_blank">Powered by <span>Odoo</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </xpath>
+    </template>
+    <template id="web_login_background_template" inherit_id="web.layout">
+        <xpath expr="//head" position="inside">
+            <t t-set='login_page_back_on' t-value="request.env['ir.config_parameter'].sudo().get_param('is_login_background')"/>
+            <t t-set='login_page_back_type' t-value="request.env['ir.config_parameter'].sudo().get_param('is_back_img_color')"/>
+            <t t-set='login_page_color' t-value="request.env['ir.config_parameter'].sudo().get_param('login_color')"/>
+
+            <t t-if='login_page_back_on and LoginBackground'>
+                <t t-if="login_page_back_type=='image'">
+                    <style type="text/css">
+                        body {
+                            background: none;
+                            background-image: url(/web/binary/login_img);
+                            background-size: cover;
+                            background-repeat: no-repeat;
+                        }
+                    </style>
+                </t>
+                <t t-if="login_page_back_type=='color'">
+                    <style type="text/css">
+                     body {
+                            background: none;
+                            background-color: <t t-esc='login_page_color'/>;
+                        }
+                    </style>
+                </t>
+            </t>
+        </xpath>
+      </template>
+</odoo>

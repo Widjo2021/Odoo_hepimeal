@@ -1,0 +1,11 @@
+.o_form_view .o_horizontal_separator {
+	color: $sep-clr-theme;
+	width: 95%;
+	position: relative;
+	margin-bottom: 10px;
+	&:before{
+		position: absolute;
+    	content: '----------';
+    	bottom: -15px;
+	}
+}

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="pph_ptkp_view_form" model="ir.ui.view">
+        <field name="name">pph.ptkp.form</field>
+        <field name="model">pph.ptkp</field>
+        <field name="arch" type="xml">
+            <form string="PTKP PPH 21 FORM">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="currency_id" invisible="1"/>
+                        <field name="nominal"/>
+                        <field name="keterangan"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <record id="pph_ptkp_tree" model="ir.ui.view">
+            <field name="name">pph.ptkp.tree</field>
+            <field name="model">pph.ptkp</field>
+            <field name="arch" type="xml">
+                <tree string="PTKP PPH 21 TREE">
+                    <field name="name"/>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="nominal"/>
+                    <field name="keterangan"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="pph_ptkp_action" model="ir.actions.act_window">
+            <field name="name">PTKP Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pph.ptkp</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    click here to create a new pph 21 ptkp.
+                </p>
+            </field>
+        </record>
+        <menuitem id="pph_ptkp_kelas" name="PTKP Settings"
+        parent="bi_hr_payroll.menu_hr_payroll_configuration"
+        action="pph_ptkp_action"/>
+</odoo>

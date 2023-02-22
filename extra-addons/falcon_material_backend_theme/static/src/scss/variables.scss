@@ -1,0 +1,28 @@
+// Paper 3.3.5
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-base: #000;
+$gray-darker: lighten($gray-base, 13.5%);
+// #222
+$gray-dark: #212121;
+$gray: #666;
+$gray-light: #bbb;
+$gray-lighter: lighten($gray-base, 93.5%);
+// #eee
+
+$brand-primary: #198c75;
+$brand-secondary: #A24689;
+$brand-success: #469408;
+$brand-info: #029ACF;
+$brand-warning: #9B479F;
+$brand-danger: #D9831F;
+$badge: #7c7bad;
+//== Scaffolding
+//
+//## Settings for some of the most global styles.

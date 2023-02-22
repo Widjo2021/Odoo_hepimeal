@@ -1,0 +1,17 @@
+.o_form_view .o_horizontal_separator {
+	color: $sep-clr-theme;
+	width: 95%;
+	position: relative;
+	padding-left: 20px;
+	&:before{
+		position:absolute;
+		content: '';
+		left: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		width: 10px;
+		height: 2px;
+		background-color: $sep-clr-theme;
+	}
+}

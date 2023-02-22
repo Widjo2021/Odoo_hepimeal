@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menuroot_ptkp" name="PTKP" sequence="1"/>
+
+    <record id="ptkp_view_form" model="ir.ui.view">
+        <field name="name">ptkp.ptkp.form</field>
+        <field name="model">ptkp.ptkp</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="nominal"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ptkp_view_tree" model="ir.ui.view">
+        <field name="name">ptkp.ptkp.tree</field>
+        <field name="model">ptkp.ptkp</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="nominal"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ptkp_action" model="ir.actions.act_window">
+        <field name="name">PTKP</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ptkp.ptkp</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="ptkp_menuitem" name="PTKP"
+        parent="ptkp_pph.menuroot_ptkp"
+        action="ptkp_action"/>
+</odoo>

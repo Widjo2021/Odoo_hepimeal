@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherit_menu_view" model="ir.ui.view">
+        <field name="name">ir.ui.menu</field>
+        <field name="model">ir.ui.menu</field>
+        <field name="inherit_id" ref="base.edit_menu_access"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="menu_icon_type"/>
+                <field name="menu_icon_image" attrs="{'invisible': [('menu_icon_type', 'in', ['icon',False] )]}"/>
+                <field name="menu_icon_class" attrs="{'invisible': [('menu_icon_type', 'in',['image',False] )]}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

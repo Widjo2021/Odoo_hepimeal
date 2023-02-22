@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_payslip">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.external_layout">
+                    <div class="page">
+                        <h2>Slip Gaji</h2>
+                        <p t-field="o.name"/>
+
+                        <table class="table table-sm table-bordered">
+                            <tr>
+                                <td>
+                                    <strong>Nama</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id"/>
+                                </td>
+                                <td>
+                                    <strong>Job</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.job_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Alamat</strong>
+                                </td>
+                                <td colspan="3">
+                                    <div t-field="o.employee_id.address_home_id"
+                                         t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True, "phone_icons": True}'/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Email</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.work_email"/>
+                                </td>
+                                <td>
+                                    <strong>NIK</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Referensi</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.number"/>
+                                </td>
+                                <td>
+                                    <strong>Akun Bank</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.bank_account_id"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <strong>Tanggal Mulai</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.date_from"/>
+                                </td>
+                                <td>
+                                    <strong>Tanggal Akhir</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.date_to"/>
+                                </td>
+                            </tr>
+                        </table>
+                        Penerimaan
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Nama</th>
+                                    <th>Qty</th>
+                                    <th>Jumlah</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="amount_total_penerimaan" t-value="0"/>
+                                <tr t-foreach="o.line_ids.filtered(lambda line: line.category_id.id == 1 or line.category_id.id == 2 or line.category_id.id == 6)" t-as="line">
+                                    <t t-set="amount_total_penerimaan" t-value="amount_total_penerimaan+line.total" />
+                                    <td>
+                                        <span t-field="line.code"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="line.amount"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="line.total"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total Penghasilan Bruto : </td>
+                                    <td class="text-right">
+                                        <span t-esc="amount_total_penerimaan"
+                                            t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br/>
+                        Pengurangan
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Kode</th>
+                                    <th>Nama</th>
+                                    <th>Qty</th>
+                                    <th>Jumlah</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="amount_total_pengurangan" t-value="0"/>
+                                <tr t-foreach="o.line_ids.filtered(lambda line: line.category_id.id == 4)" t-as="line">
+                                    <t t-set="amount_total_pengurangan" t-value="amount_total_pengurangan+line.total" />
+                                    <td>
+                                        <span t-field="line.code"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.quantity"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="line.amount"
+                                              t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                    <td class="text-right">
+                                        (<span t-esc="line.total" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Total Penghasilan Bruto : </td>
+                                    <td class="text-right">
+                                        (<span t-esc="amount_total_pengurangan" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table class="table table-sm">
+                            <tbody>
+                                <tr t-foreach="o.line_ids.filtered(lambda line: line.category_id.id == 5)" t-as="line">
+                                    <td>Total Diterima Karyawan : </td>
+                                    <td class="text-right">
+                                        <span t-esc="line.total" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        Catatan Kehadiran
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Deskripsi</th>
+                                    <th>Hari Kerja</th>
+                                    <th>(%)</th>
+                                    <th>Jam Kerja</th>
+                                    <th>(%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="o.worked_days_line_ids" t-as="worked_line">
+                                    <td><span t-esc="worked_line.name"/></td>
+                                    <td><span t-esc="worked_line.number_of_days"/></td>
+                                    <td><span t-esc="worked_line.persentase_days"/></td>
+                                    <td><span t-esc="worked_line.number_of_hours"/></td>
+                                    <td><span t-esc="worked_line.persentase_hours"/></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p class="text-right">
+
+                            <strong>Tanda Tangan</strong>
+                        </p>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+</odoo>
+

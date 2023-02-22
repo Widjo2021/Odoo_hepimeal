@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="surat_kerja_menuroot" name="Surat Kerja" sequence="1"/>
+
+    <record id="surat_kerja_search" model="ir.ui.view">
+        <field name="name">surat.kerja.search</field>
+        <field name="model">surat.kerja</field>
+        <field name="arch" type="xml">
+            <search string="Search Surat Kerja">
+                <field name="surat_jalan_employee_id" string="Employee" filter_domain="[('surat_jalan_employee_id.employee_id', 'ilike', self)]"/>
+                <field name="name" string="Number"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="surat_kerja_view_form" model="ir.ui.view">
+        <field name="name">surat.kerja.form</field>
+        <field name="model">surat.kerja</field>
+        <field name="arch" type="xml">
+            <form string="Surat Kerja">
+                <header>
+                    <button name="action_done" type="object" string="Done" attrs="{'invisible': [('state', 'in', ['done', False])]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="ongoing, done"/>
+                </header>
+                <sheet>
+                    <div class="oe_title oe_left">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+<!--                            <field name="employee_id"/>-->
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="word_hours" string="Work Hours" widget="float_time"/>
+                            <field name="description"/>
+                            <field name="default_attendance" invisible="1"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Detil Employee">
+                            <field name="surat_jalan_employee_id"
+                                   context="{'default_word_hours': word_hours, 'default_date_from': date_from, 'default_date_to': date_to}"
+                                   attrs="{'readonly': [('state', 'in', ['done'])]}">
+                                <tree editable="bottom">
+                                    <field name="employee_id"/>
+                                    <field name="date_from" readonly="1"/>
+                                    <field name="date_from" invisible="1"/>
+                                    <field name="date_to" readonly="1"/>
+                                    <field name="date_to" invisible="1"/>
+                                    <field name="word_hours" string="Work Hours" widget="float_time" readonly="1"/>
+                                    <field name="word_hours" invisible="1" widget="float_time"/>
+                                    <field name="long_working_hours" widget="float_time"/>
+                                    <field name="long_working_hours_approved" widget="float_time"/>
+                                    <field name="state"/>
+                                </tree>
+                                <form>
+                                    <sheet>
+                                        <group>
+                                            <field name="employee_id"/>
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <field name="word_hours" widget="float_time"/>
+                                            <field name="long_working_hours" widget="float_time"/>
+                                            <field name="long_working_hours_approved" widget="float_time"/>
+                                            <field name="state"/>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Detil Attendance">
+                            <field name="detil_attendance_line_id">
+                                <tree create="false" edit="false">
+                                    <field name="employee_id"/>
+                                    <field name="check_in"/>
+                                    <field name="check_out"/>
+                                    <field name="work_hours"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="surat_kerja_sequence" model="ir.sequence">
+        <field name="name">Surat Kerja</field>
+        <field name="code">surat.kerja</field>
+        <field name="prefix">SK/00</field>
+        <field name="padding">3</field>
+    </record>
+
+    <record id="surat_kerja_view_tree" model="ir.ui.view">
+        <field name="name">surat.kerja.tree</field>
+        <field name="model">surat.kerja</field>
+        <field name="arch" type="xml">
+            <tree string="Surat Kerja" default_order="create_date desc">
+                <field name="name"/>
+<!--                <field name="employee_id"/>-->
+                <field name="date_from"/>
+                <field name="date_to"/>
+                <field name="word_hours"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="surat_kerja_action" model="ir.actions.act_window">
+        <field name="name">Surat Kerja</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">surat.kerja</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="surat_kerja_menuitem"
+              name="Surat Kerja"
+              parent="surat_kerja_menuroot"
+              action="surat_kerja_action"/>
+
+    <record id="surat_kerja_line_view_tree" model="ir.ui.view">
+        <field name="name">surat.jalan.detil.employee.tree</field>
+        <field name="model">surat.jalan.detil.employee</field>
+        <field name="arch" type="xml">
+            <tree string="Surat Kerja">
+<field name="employee_id"/>
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <field name="word_hours" widget="float_time" sum="Total"/>
+                                            <field name="long_working_hours" widget="float_time" sum="Total"/>
+                                            <field name="long_working_hours_approved" widget="float_time" sum="Total"/>
+                                            <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="surat_kerja_line_search" model="ir.ui.view">
+        <field name="name">surat.jalan.detil.employee.search</field>
+        <field name="model">surat.jalan.detil.employee</field>
+        <field name="arch" type="xml">
+            <search string="Search Surat Kerja Line">
+                <field name="employee_id" string="Employee"/>
+            </search>
+        </field>
+    </record>
+
+
+
+    <record id="surat_kerja_line_action" model="ir.actions.act_window">
+        <field name="name">Surat Kerja Line</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">surat.jalan.detil.employee</field>
+        <field name="view_mode">tree</field>
+    </record>
+
+    <menuitem id="surat_kerja_line_menuitem"
+              name="Surat Kerja Line"
+              parent="surat_kerja_menuroot"
+              action="surat_kerja_line_action"/>
+</odoo>

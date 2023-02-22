@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem id="ijin_jam_kerja_menuroot" name="Ijin Jam Kerja" sequence="1"/>
+
+    <record id="ijin_jam_kerja_search" model="ir.ui.view">
+        <field name="name">ijin.jam.kerja.search</field>
+        <field name="model">ijin.jam.kerja</field>
+        <field name="arch" type="xml">
+            <search string="Search Ijin Jam Kerja">
+                <field name="employee_id"/>
+                <field name="name" string="Number"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="ijin_jam_kerja_view_form" model="ir.ui.view">
+        <field name="name">ijin.jam.kerja.form</field>
+        <field name="model">ijin.jam.kerja</field>
+        <field name="arch" type="xml">
+            <form string="Ijin Jam Kerja">
+                <header>
+<!--                    <button name="action_approved" type="object" string="Approve" attrs="{'invisible': [('state', 'in', ['draft', False])]}"/>-->
+                    <field name="state" widget="statusbar" statusbar_visible="draft,approved"/>
+                </header>
+                <sheet>
+                    <div class="oe_title oe_left">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="duration"/>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="ijin_jam_kerja_sequence" model="ir.sequence">
+        <field name="name">Ijin Jam Kerja</field>
+        <field name="code">ijin.jam.kerja</field>
+        <field name="prefix">IJK/00</field>
+        <field name="padding">3</field>
+    </record>
+
+    <record id="ijin_jam_kerja_view_tree" model="ir.ui.view">
+        <field name="name">ijin.jam.kerja.tree</field>
+        <field name="model">ijin.jam.kerja</field>
+        <field name="arch" type="xml">
+            <tree string="Ijin Jam Kerja" default_order="create_date desc">
+                <field name="name"/>
+                <field name="employee_id"/>
+                <field name="date"/>
+                <field name="duration"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="ijin_jam_kerja_action" model="ir.actions.act_window">
+        <field name="name">Ijin Jam Kerja</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">ijin.jam.kerja</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="ijin_jam_kerja_menuitem"
+              name="Ijin Jam Kerja"
+              parent="ijin_jam_kerja_menuroot"
+              action="ijin_jam_kerja_action"/>
+</odoo>

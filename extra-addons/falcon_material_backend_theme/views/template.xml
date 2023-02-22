@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="asset_backend" inherit_id="web.assets_backend" name='falcon backend assets backend'>
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/primary-color-purple.scss" rel="stylesheet" type="text/scss"/>
+            <link href="/falcon_material_backend_theme/static/src/scss/seprator-color.scss" rel="stylesheet" type="text/scss"/>
+            <link href="/falcon_material_backend_theme/static/src/scss/sidebar-nav-hover-color.scss" rel="stylesheet" type="text/scss"/>
+            <link href="/falcon_material_backend_theme/static/src/scss/sidebar-nav-font-color.scss" rel="stylesheet" type="text/scss"/>
+            <link href="/falcon_material_backend_theme/static/src/scss/night-mode-color.scss" rel="stylesheet" type="text/scss"/>
+            
+            <link href="/falcon_material_backend_theme/static/src/scss/custom.scss" rel="stylesheet" type="text/scss"/>
+
+            <link href="/falcon_material_backend_theme/static/src/scss/admin.scss" rel="stylesheet" type="text/scss"/>
+            <link href="/falcon_material_backend_theme/static/src/scss/custom_layout.scss" rel="stylesheet" type="text/scss"/>
+            <link rel="stylesheet" href="/falcon_material_backend_theme/static/src/css/colpick.css"/>
+            <link rel="stylesheet" href="/falcon_material_backend_theme/static/src/css/widget.css"/>
+            <script src="/falcon_material_backend_theme/static/src/js/custom.js" type="text/javascript"/>
+            <script type="text/javascript" src="/falcon_material_backend_theme/static/src/js/lib/colpick.js"></script>
+            <script src="/falcon_material_backend_theme/static/src/js/menu.js" type="text/javascript"/>
+            <script src="/falcon_material_backend_theme/static/src/js/colorwidget/widget.js" type="text/javascript"/>
+        </xpath>
+    </template>
+    <template id="asset_frontend" inherit_id="web.assets_frontend" name='falcon backend assets frontend'>
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/primary-color-dark.scss" rel="stylesheet" type="text/scss"/>
+            <link href="/falcon_material_backend_theme/static/src/scss/login_design.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    
+    <template id="falcon_material_backend_theme.theme_customize_backend" name="Theme Modal for Customization">
+        <div class="modal o_technical_modal falcon_material_backend_theme" id="theme_customize_modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h4 class="modal-title">Theme Customize</h4>
+                        <button type="button" class="close" data-dismiss="modal">X</button>
+                    </div>
+                    <div class='row'>
+                        <div class='col-md-4 falcon-link-tab'>
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#theme_layout">Layout</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#theme_color">Colors</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#theme_mode">Display Mode</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#theme_font">Primary Fonts</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#theme_button_style">Button Style</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#theme_separator_style">Separator</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#theme_sidebar">Sidebar</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class='col-md-8 falcon-describe-tab'>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div id="theme_layout" class="container tab-pane active">
+                                    <p class="pf-title">Choose Layout</p>
+                                    <div class="pf-seprator"/>
+                                    <div class="panel-primary-layout">
+                                        <label class="chd-color-combi">
+                                            <span>Classic View</span>
+                                            <input data-enable="less" data-xmlid="" name="layoutvar" type="radio"/>
+                                        </label>
+                                        <label class="chd-color-combi">
+                                            <span>Modern View</span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_layout_small" name="layoutvar" type="radio"/>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="theme_color" class="container tab-pane fade">
+                                    <div class="panel-primary-color">
+                                        <div class='theme_color_main_div'>
+                                            <h2 class="pf-title">Choose Theme Color</h2>
+                                            <div class='color-picker'>
+                                                <h5>Theme</h5>
+                                                <button id="picker"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="theme_mode" class="container tab-pane fade">
+                                    <p class="pf-title">Choose Display Mode</p>
+                                    <div class="pf-seprator"/>
+                                    <div class="panel-primary-layout">
+                                        <label class="chd-color-combi">
+                                            <span>Normal Mode</span>
+                                            <input data-enable="less" data-xmlid="" name="modevar" type="radio"/>
+                                        </label>
+                                        <label class="chd-color-combi">
+                                            <span>Night Mode</span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_mode_style_night" name="modevar" type="radio"/>
+                                        </label>
+                                    </div>
+                                    <div class="panel-primary-color night_mode_color_div">
+                                        <div class='theme_color_main_div'>
+                                            <h2 class="pf-title">Choose Night Mode Color</h2>
+                                            <div class='color-picker'>
+                                                <h5>Night Color</h5>
+                                                <button id="night_mode_color_picker"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="theme_font" class="container tab-pane fade">
+                                    <p class="pf-title">Choose Font</p>
+                                    <div class="pf-separator"/>
+                                    <div class="panel-primary-font">
+                                        <label>
+                                            <span class="font-style1">Open Sans </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_open_sans" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style2">PT Sans  </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_josefin_slab" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style3">Raleway </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_vollkorn" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style4">Ubuntu </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_ubuntu" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style5">Roboto </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_roboto" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style6">Lato </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_dancing_script" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style7">ABeeZe </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_7" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style8">Arvo </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_8" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style9">Noto Sans </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_9" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style10">Noto Serif </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_10" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style11">Quicksand </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_11" name="theme" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="font-style12">Rubik </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_font_style_12" name="theme" type="radio"/>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="theme_button_style" class="container tab-pane fade">
+                                    <p class="pf-title">Choose Button Style</p>
+                                    <div class="pf-separator"/>
+                                    <div class="panel-primary-font fal-button-style">
+                                        <label>
+                                            <span class="button-style1">Rounded</span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_button_style_1" name="cst_btn" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="button-style2">Semi-rounded</span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_button_style_2" name="cst_btn" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="button-style3">Square</span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_button_style_3" name="cst_btn" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="button-style4">Leaf</span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_button_style_4" name="cst_btn" type="radio"/>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div id="theme_separator_style" class="container tab-pane fade">
+                                    <p class="pf-title">Choose Separator Style</p>
+                                    <div class="pf-separator"/>
+                                    <div class="panel-primary-font fal-separator-style">
+                                        <label>
+                                            <span class="separator-style1">
+                                                <img src="/falcon_material_backend_theme/static/src/img/separator/sepr-1.png"/>
+                                            </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_separator_style_1" name="falcon_sep_style_btn" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="separator-style2">
+                                                <img src="/falcon_material_backend_theme/static/src/img/separator/sepr-2.png"/>
+                                            </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_separator_style_2" name="falcon_sep_style_btn" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="separator-style3">
+                                                <img src="/falcon_material_backend_theme/static/src/img/separator/sepr-3.png"/>
+                                            </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_separator_style_3" name="falcon_sep_style_btn" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="separator-style4">
+                                                <img src="/falcon_material_backend_theme/static/src/img/separator/sepr-4.png"/>
+                                            </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_separator_style_4" name="falcon_sep_style_btn" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="separator-style5">
+                                                <img src="/falcon_material_backend_theme/static/src/img/separator/sepr-5.png"/>
+                                            </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_separator_style_5" name="falcon_sep_style_btn" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="separator-style6">
+                                                <img src="/falcon_material_backend_theme/static/src/img/separator/sepr-6.png"/>
+                                            </span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.option_separator_style_6" name="falcon_sep_style_btn" type="radio"/>
+                                        </label>
+                                    </div>              
+                                    <div class="panel-primary-color">
+                                        <div class='theme_color_main_div'>
+                                            <h2 class="pf-title">Choose Separator Color</h2>
+                                            <div class='color-picker'>
+                                                <h5>Separator Color</h5>
+                                                <button id="separator_color_picker"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="theme_sidebar" class="container tab-pane fade">
+                                    <p class="pf-title">Choose Navbar Hover Style</p>
+                                    <div class="pf-separator"/>
+                                    <div class="panel-primary-font fal-sidebar-nav-style">
+                                        <label>
+                                            <span class="sidebar-hover-style1">Style 1</span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.sidebar_nav_hover_style_1" name="falcon_nav_hover_style" type="radio"/>
+                                        </label>
+                                        <label>
+                                            <span class="sidebar-hover-style1">Style 2</span>
+                                            <input data-enable="less" data-xmlid="falcon_material_backend_theme.sidebar_nav_hover_style_2" name="falcon_nav_hover_style" type="radio"/>
+                                        </label>
+                                    </div>
+                                    <div class="panel-primary-color">
+                                        <div class='theme_color_main_div'>
+                                            <h2 class="pf-title">Choose Navbar Hover Background Color</h2>
+                                            <div class='color-picker'>
+                                                <h5>Hover Background Color</h5>
+                                                <button id="sidebar_nav_hover_color_picker"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="panel-primary-color">
+                                        <div class='theme_color_main_div'>
+                                            <h2 class="pf-title">Choose Navbar Font Color</h2>
+                                            <div class='color-picker'>
+                                                <h5>Font Color</h5>
+                                                <button id="sidebar_nav_font_color_picker"></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+     <!-- Option sidebar nav hover Style -->
+    <template active="True" id="sidebar_nav_hover_style_1" inherit_id="falcon_material_backend_theme.asset_backend" name="sidebar_nav_hover_style_1">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/sidebar/sidebar_nav_hover_style_1.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+     <template active="False" id="sidebar_nav_hover_style_2" inherit_id="falcon_material_backend_theme.asset_backend" name="sidebar_nav_hover_style_2">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/sidebar/sidebar_nav_hover_style_2.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <!-- Option mode Style -->
+    <template active="False" id="option_mode_style_night" inherit_id="falcon_material_backend_theme.asset_backend" name="option_mode_style_night">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/mode/night_mode_style.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <!-- Option Separator Style -->
+    <template active="True"  id="option_separator_style_1" inherit_id="falcon_material_backend_theme.asset_backend" name="option_separator_style_1">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/separator_style/separator_style_1.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_separator_style_2" inherit_id="falcon_material_backend_theme.asset_backend" name="option_separator_style_2">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/separator_style/separator_style_2.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_separator_style_3" inherit_id="falcon_material_backend_theme.asset_backend" name="option_separator_style_3">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/separator_style/separator_style_3.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_separator_style_4" inherit_id="falcon_material_backend_theme.asset_backend" name="option_separator_style_4">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/separator_style/separator_style_4.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_separator_style_5" inherit_id="falcon_material_backend_theme.asset_backend" name="option_separator_style_5">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/separator_style/separator_style_5.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_separator_style_6" inherit_id="falcon_material_backend_theme.asset_backend" name="option_separator_style_6">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/separator_style/separator_style_6.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <!-- Option Button Style -->
+    <template active="True"  id="option_button_style_1" inherit_id="falcon_material_backend_theme.asset_backend" name="option_button_style_1">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/button_style/button_style_1.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_button_style_2" inherit_id="falcon_material_backend_theme.asset_backend" name="option_button_style_2">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/button_style/button_style_2.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_button_style_3" inherit_id="falcon_material_backend_theme.asset_backend" name="option_button_style_3">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/button_style/button_style_3.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_button_style_4" inherit_id="falcon_material_backend_theme.asset_backend" name="option_button_style_4">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/button_style/button_style_4.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <!-- Option Primary Fonts -->
+    <template active="True" id="option_font_style_open_sans" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_open_sans" >
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/font-style-open-sans.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_josefin_slab" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_josefin_slab">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/font-style-josefin-slab.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_vollkorn" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_vollkorn">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/font-style-vollkorn.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_ubuntu" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_ubuntu">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/font-style-ubuntu.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_roboto" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_roboto">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/font-style-roboto.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_dancing_script" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_dancing_script">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/font-style-dancing-script.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_7" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_7">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/fonts/font-style-abeeze.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_8" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_8">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/fonts/font-style-arvo.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_9" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_9">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/fonts/font-style-noto-sans.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_10" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_10">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/fonts/font-style-noto-serif.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_11" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_11">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/fonts/font-style-quicksand.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_font_style_12" inherit_id="falcon_material_backend_theme.asset_backend" name="option_font_style_12">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/fonts/font-style-rubik.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+    <template active="False"  id="option_layout_small" inherit_id="falcon_material_backend_theme.asset_backend" name="option_layout_small">
+        <xpath expr="." position="inside">
+            <link href="/falcon_material_backend_theme/static/src/scss/layout.scss" rel="stylesheet" type="text/scss"/>
+        </xpath>
+    </template>
+
+     <template id="menu_link">
+        <t t-set="debug_param" t-value="'?&amp;debug=' if debug else ''"/>
+        <t t-esc="debug_param"/>
+        <a t-att-href="'/web%s#menu_id=%s&amp;action=%s' % (debug_param, menu['id'], menu['action'] and menu['action'].split(',')[1] or '')"
+            t-att-class="'oe_menu_toggler ' if menu.get('children') else 'oe_menu_leaf'"
+            t-att-data-menu="menu['id']"
+            t-att-data-menu-xmlid="menu.get('xmlid')"
+            t-att-data-action-model="menu['action'] and menu['action'].split(',')[0] or None"
+            t-att-data-action-id="menu['action'] and menu['action'].split(',')[1] or None">
+            <span class="oe_menu_text">
+                <t t-esc="menu['name']"/>
+            </span>
+            <t t-if="menu.get('children') and menu['children']">
+                <span class="sb-m"/>
+            </t>
+        </a>
+    </template>
+
+    <template id="menu_apps">
+        <ul class="nav navbar-nav navbar-left oe_application_menu_placeholder">
+            <li t-foreach="menu_data['children']" t-as="menu">
+                <t t-call="falcon_material_backend_theme.menu_link"/>
+            </li>
+            <li id="menu_more_container" class="dropdown" style="display: none;">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <b class="caret"></b></a>
+                <ul id="menu_more" class="dropdown-menu"></ul>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right oe_user_menu_placeholder" style="display: none;"/>
+        <ul class="nav navbar-nav navbar-right oe_systray" style="display: none;"/>
+    </template>
+
+    <template id="inherit_web_webclient_bootstrap" inherit_id="web.webclient_bootstrap">
+        <xpath expr="//t[@t-set='body_classname']" position="after">
+            <div  t-att-class="'o_sub_menu' if menu_data else 'o_sub_menu o_hidden'">
+                <div class="o_sub_menu_content">
+                    <ul class='oe_secondary_menu'>
+                    </ul>
+                </div>
+            </div>
+        </xpath>
+    </template>
+    
+    <template id="asset_backend_theme_customizer" inherit_id="falcon_material_backend_theme.asset_backend" name='Theme Custom Asset'>
+        <xpath expr="." position="inside">
+            <script groups="base.group_system" src="/falcon_material_backend_theme/static/src/js/base.js" type="text/javascript"/>
+        </xpath>
+    </template>
+</odoo>

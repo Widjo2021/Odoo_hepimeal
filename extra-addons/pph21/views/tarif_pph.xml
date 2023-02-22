@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="tarif_pph_view_form" model="ir.ui.view">
+        <field name="name">tarif.pph.form</field>
+        <field name="model">tarif.pph</field>
+        <field name="arch" type="xml">
+            <form string="Tarif PPH">
+                <sheet>
+                    <group>
+                        <field name="name" string="Persentage (%)"/>
+                        <field name="min_nominal" options="{'widget': 'monetary'}"/>
+                        <field name="max_nominal" options="{'widget': 'monetary'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+        <record id="tarif_pph_tree" model="ir.ui.view">
+            <field name="name">tarif.pph.tree</field>
+            <field name="model">tarif.pph</field>
+            <field name="arch" type="xml">
+                <tree string="Tarif PPH TREE">
+                    <field name="name" string="Persentage (%)"/>
+                    <field name="min_nominal" options="{'widget': 'monetary'}"/>
+                    <field name="max_nominal" options="{'widget': 'monetary'}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="tarif_pph_action" model="ir.actions.act_window">
+            <field name="name">Tarif PPH Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">tarif.pph</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    click here to create a new tarif pph settings.
+                </p>
+            </field>
+        </record>
+        <menuitem id="tarif_pph_kelas" name="Tarif PPH Settings"
+        parent="bi_hr_payroll.menu_hr_payroll_configuration"
+        action="tarif_pph_action"/>
+</odoo>

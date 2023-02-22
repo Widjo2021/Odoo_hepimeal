@@ -1,0 +1,41 @@
+/*login page design*/
+.falcon-login {
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	height: 100vh;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	> .card {
+		width: 300px;
+	}
+	a {
+		color: $bc-theme;
+	}
+	.btn-primary {
+		background-color: $bc-theme;
+    	border-color: $bc-theme;
+	}
+	.oe_login_buttons {
+		.btn-link {
+			color: $bc-theme;
+		}
+	}
+}
+.falcon_default_login {
+	a {
+		color: $bc-theme;
+	}
+	.btn-primary {
+		background-color: $bc-theme;
+    	border-color: $bc-theme;
+	}
+}
+/*login page design end*/

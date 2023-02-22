@@ -1,0 +1,16 @@
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .oe_secondary_menu li a {
+	color: $sidebar-nav-font-color;
+	&:hover {
+		background: $sidebar-nav-hover-color;
+	}
+}
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .dropdown-menu li:active > a,
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .dropdown-menu li:focus > a,
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .dropdown-menu li:hover > a,
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .dropdown-menu li.active > a,
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .dropdown-menu li:not(.active) > a:active,
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .dropdown-menu li:not(.active) > a:focus,
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .dropdown-menu li:not(.active) > a:hover,
+.o_web_client .o_main .o_sub_menu .o_sub_menu_content .dropdown-menu li:not(.active) > a.active {
+	background: $sidebar-nav-hover-color !important;
+}
