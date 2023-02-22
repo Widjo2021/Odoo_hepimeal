@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!--Account Move lines-->
+        <record id="stage_update_view" model="ir.ui.view">
+            <field name="name">Update Stage</field>
+            <field name="model">recruitment.stage.update</field>
+            <field name="arch" type="xml">
+                <form string="Update Stage">
+                    <group>
+                        <field name ='stages'/>
+                    </group>
+                    <footer>
+                        <button type="object" name="update_stages" string="Update Stages" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_stage_update" model="ir.actions.act_window">
+            <field name="name">Update Stage</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">recruitment.stage.update</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="stage_update_view"/>
+            <field name="context">{}</field>
+            <field name="target">new</field>
+            <field name="help">This wizard will validate all journal entries selected. Once journal entries are validated, you can not update them anymore.</field>
+            <field name="binding_model_id" ref="model_hr_applicant" />
+            <field name="binding_view_types">list</field>
+        </record>
+
+    </data>
+</odoo>
+
